@@ -24,9 +24,14 @@ export function AppProvider({ children }) {
     ensureDefaultSettings();
     const unsubTeams = watchTeams(setTeamsRaw);
     const unsubSoldiers = watchSoldiers(setSoldiers);
-    const unsubSettings = watchSettings((s) => { setSettings(s); setLoading(false); });
+    const unsubSettings = watchSettings((s) => { 
+      setSettings(s); 
+      setLoading(false); 
+    });
     const unsubAuth = watchAuthState(setIsAdmin);
-    const unsubSchedule = watchSchedule(14, setSchedule);
+    const unsubSchedule = watchSchedule(14, (data) => {
+      setSchedule(data);
+    });
 
     return () => {
       unsubTeams(); unsubSoldiers(); unsubSettings(); unsubAuth(); unsubSchedule();

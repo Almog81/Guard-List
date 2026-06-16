@@ -6,7 +6,7 @@ import AdminPage from './pages/AdminPage';
 function App() {
   return (
     <AppProvider>
-      <BrowserRouter basename="/guard-schedule">
+      <BrowserRouter basename="/Guard-List">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />

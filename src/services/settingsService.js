@@ -15,8 +15,12 @@ export function watchSettings(callback) {
 }
 
 export async function ensureDefaultSettings() {
-  const snap = await getDoc(SETTINGS_DOC);
-  if (!snap.exists()) await setDoc(SETTINGS_DOC, DEFAULTS);
+  try {
+    const snap = await getDoc(SETTINGS_DOC);
+    if (!snap.exists()) await setDoc(SETTINGS_DOC, DEFAULTS);
+  } catch (e) {
+    console.log('Settings initialization skipped (unauthorized or already exists)');
+  }
 }
 
 export async function saveSettings(settings) {
